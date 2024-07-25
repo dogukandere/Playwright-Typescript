@@ -8,6 +8,8 @@ export class ProductPage extends BasePage{
     filterIpadGenerationCheckbox = this.page.getByLabel('Apple iPad (9th Generation)', { exact: true });
     storage256GB = this.page.getByRole('link', { name: '256 GB - apply Storage' });
     clearAllSelectedFiltersButton = this.page.getByRole('link', { name: 'Clear All Filters' });
+    ebayLogo = this.page.getByRole('link', { name: 'eBay Home' });
+    shippingToCountryText = this.page.getByRole('button', { name: 'Shipping toTurkey' });
 
     async isSortButtonDisplayed(){
         await expect(this.saveThisSearchButton).toBeVisible();
@@ -24,6 +26,7 @@ export class ProductPage extends BasePage{
 
     async filterIpadGeneration(){
         await this.filterIpadGenerationCheckbox.check();
+        await expect(this.filterIpadGenerationCheckbox).toBeChecked();
     }
 
     async click256GbButton(){
@@ -34,4 +37,11 @@ export class ProductPage extends BasePage{
         await this.clearAllSelectedFiltersButton.click();
     }
 
+    async verifyEbayLogo(){
+        await expect(this.ebayLogo).toBeVisible();
+    }
+
+    async verifyShippingToCountryText(){
+        await expect(this.shippingToCountryText).toContainText('Shipping to');
+    }
 }

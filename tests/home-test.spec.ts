@@ -1,9 +1,13 @@
 import { test, expect } from '@playwright/test';
 import { Pages } from "../pages/pages";
 
-test('Search product and verify main page', async({page})=>{
+test.beforeEach(async ({ page }) => {
   const pages = Pages(page);
   await pages.homePage.goToPage();
+});
+
+test('Search product and verify main page', async({page})=>{
+  const pages = Pages(page);
   await expect(page).toHaveURL("https://www.ebay.com/");
   await expect(page).toHaveTitle("Electronics, Cars, Fashion, Collectibles & More | eBay");
   await pages.homePage.verifyButtonsOnHomePage();
@@ -13,7 +17,6 @@ test('Search product and verify main page', async({page})=>{
 
 test('Verify product page', async({page})=>{
   const pages = Pages(page);
-  await pages.homePage.goToPage();
   await pages.homePage.searchProduct("ipad");
   await pages.homePage.clickSearchButton();
   await pages.productPage.isSortButtonDisplayed();
@@ -22,4 +25,6 @@ test('Verify product page', async({page})=>{
   await pages.productPage.filterIpadGeneration();
   await pages.productPage.click256GbButton();
   await pages.productPage.clearAllSelectedFilters();
+  await pages.productPage.verifyEbayLogo();
+  await pages.productPage.verifyShippingToCountryText();
 });
