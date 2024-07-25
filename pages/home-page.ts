@@ -1,12 +1,13 @@
 import { BasePage, expect } from "./base-page";
 
 export class HomePage extends BasePage {
-    searchbox = this.page.locator('#gh-ac');
-    searchButton = this.page.locator('#gh-btn');
-    shipToButton = this.page.locator('#gh-shipto-click > div > button > span');
-    sellButton = this.page.locator('#gh-p-2 > a');
-    notificationsButton = this.page.locator('#gh-Alerts-i');
-    cartButton = this.page.locator('#gh-minicart-hover > div > a.gh-eb-li-a.gh-rvi-menu > svg');
+    searchbox = this.page.getByPlaceholder('Search for anything');
+    searchButton = this.page.getByRole('button', { name: 'Search' });
+    shipToButton = this.page.getByRole('button', { name: 'Ship to' });
+    sellButton = this.page.getByLabel('Account').getByRole('link', { name: 'Sell' });
+    notificationsButton = this.page.getByRole('button', { name: 'Notifications' });
+    cartButton = this.page.getByRole('link', { name: 'Your shopping cart' });
+
 
     async goToPage(){
         await this.page.goto('https://www.ebay.com');
