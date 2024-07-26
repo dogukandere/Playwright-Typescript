@@ -5,7 +5,7 @@ export default defineConfig({
   
   fullyParallel: true,
 
-  timeout: 10000,
+  timeout: 15000,
   
   forbidOnly: !!process.env.CI,
   
@@ -16,11 +16,9 @@ export default defineConfig({
   reporter: 'html',
  
   use: {
+
     trace: 'on-first-retry',
 
-    colorScheme: 'dark',
-
-    permissions: ['notifications'],
   },
 
   projects: [

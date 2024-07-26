@@ -12,7 +12,7 @@ export class ProductPage extends BasePage{
     shippingToCountryText = this.page.getByRole('button', { name: 'Shipping toTurkey' });
 
     async isSortButtonDisplayed(){
-        await expect(this.saveThisSearchButton).toBeVisible();
+        await expect.soft(this.saveThisSearchButton).toBeVisible();
     }
 
     async selectIncludeDescriptionCheckbox(){
@@ -26,7 +26,7 @@ export class ProductPage extends BasePage{
 
     async filterIpadGeneration(){
         await this.filterIpadGenerationCheckbox.check();
-        await expect(this.filterIpadGenerationCheckbox).toBeChecked();
+        await expect.soft(this.filterIpadGenerationCheckbox, 'filtering checkbox').toBeChecked();
     }
 
     async click256GbButton(){
@@ -38,10 +38,10 @@ export class ProductPage extends BasePage{
     }
 
     async verifyEbayLogo(){
-        await expect(this.ebayLogo).toBeVisible();
+        await expect.soft(this.ebayLogo).toBeVisible();
     }
 
     async verifyShippingToCountryText(){
-        await expect(this.shippingToCountryText).toContainText('Shipping to');
+        await expect.soft(this.shippingToCountryText).toContainText('Shipping to');
     }
 }
