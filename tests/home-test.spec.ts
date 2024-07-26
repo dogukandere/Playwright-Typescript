@@ -4,6 +4,7 @@ import { Pages } from "../pages/pages";
 test.beforeEach(async ({ page }) => {
   const pages = Pages(page);
   await pages.homePage.goToPage();
+  await page.setViewportSize({width: 1920,height: 1080});
 });
 
 test('Search product and verify main page', async({page})=>{
