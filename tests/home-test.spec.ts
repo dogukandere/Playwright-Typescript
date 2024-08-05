@@ -1,5 +1,6 @@
 import { test, expect } from '@playwright/test';
 import { Pages } from "../pages/pages";
+import { products } from './test-data';
 
 test.beforeEach(async ({ page }) => {
   const pages = Pages(page);
@@ -19,7 +20,7 @@ test('Search product and verify main page', async({page})=>{
 
 test('Verify product page', async({page})=>{
   const pages = Pages(page);
-  await pages.homePage.searchProduct("ipad");
+  await pages.homePage.searchProduct(products.product1);
   await pages.homePage.clickSearchButton();
   await pages.productPage.isSortButtonDisplayed();
   await pages.productPage.selectIncludeDescriptionCheckbox();
