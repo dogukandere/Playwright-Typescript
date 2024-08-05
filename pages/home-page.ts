@@ -8,9 +8,8 @@ export class HomePage extends BasePage {
     notificationsButton = this.page.getByRole('button', { name: 'Notifications' });
     cartButton = this.page.getByRole('link', { name: 'Your shopping cart' });
 
-
-    async goToPage(){
-        await this.page.goto('https://www.ebay.com');
+    async goToPage(url){
+        await this.page.goto(url);
     }
 
     async verifyButtonsOnHomePage(){
@@ -21,7 +20,9 @@ export class HomePage extends BasePage {
     }
 
     async searchProduct(product){
+        await expect(this.searchbox).toBeEmpty();
         await this.searchbox.fill(product);
+        await expect(this.searchbox).toHaveValue(product);
     }
 
     async clickSearchButton(){

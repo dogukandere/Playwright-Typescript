@@ -3,8 +3,9 @@ import { Pages } from "../pages/pages";
 
 test.beforeEach(async ({ page }) => {
   const pages = Pages(page);
-  await pages.homePage.goToPage();
-  await page.setViewportSize({width: 1920,height: 1080});
+  await pages.homePage.goToPage("https://www.ebay.com/");
+  const response = await page.request.get('https://www.ebay.com/');
+  await expect(response).toBeOK();
 });
 
 test('Search product and verify main page', async({page})=>{
