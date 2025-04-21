@@ -14,7 +14,7 @@ test('Search product and verify main page', async({page})=>{
   await expect(page).toHaveURL("https://www.ebay.com/");
   await expect(page).toHaveTitle("Electronics, Cars, Fashion, Collectibles & More | eBay");
   await pages.homePage.verifyButtonsOnHomePage();
-  await pages.homePage.searchProduct("ipad");
+  await pages.homePage.searchProduct(products.product1);
   await pages.homePage.clickSearchButton();
 });
 
